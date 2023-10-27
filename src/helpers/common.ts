@@ -7,7 +7,7 @@ const baseURL = 'https://mfwkweb-api.clarovideo.net/services/epg/channel?device_
     const {response: {channels}} = await res.json();
 
     const channelsData = formatChannels(channels);
-    const unformattedEpgData = formatEpgData(channels);
+    const unformattedEpgData = cleanEpgData(channels);
 
     const EPGData = mergeChannelsInfo(unformattedEpgData);
 
@@ -26,7 +26,7 @@ const baseURL = 'https://mfwkweb-api.clarovideo.net/services/epg/channel?device_
     }));
   };
 
-  const formatEpgData = (channels) => {
+  const cleanEpgData = (channels) => {
     return channels.map(channel => ({
       channels: channel.events.map(event => ({
           id: event.id,
