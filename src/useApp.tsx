@@ -1,4 +1,4 @@
-import { fetchChannels, fetchEpg } from './helpers';
+import { fetchChannels, fetchClaroVideoChannels, fetchEpg } from './helpers';
 import { Channel, Program, useEpg } from "planby";
 import { theme } from "./helpers/theme";
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -28,10 +28,11 @@ export function useApp() {
 
   const handleFetchResources = useCallback(async () => {
     setIsLoading(true);
+    const { channelsData, epgData } = await fetchClaroVideoChannels();
     const epg = await fetchEpg();
     const channels = await fetchChannels();
     setEpg(epg as Program[]);
-    setChannels(channels as Channel[]);
+    setChannels(channelsData as Channel[]);
     setIsLoading(false);
   }, []);
 
