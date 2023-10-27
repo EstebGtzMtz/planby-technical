@@ -28,10 +28,10 @@ export function useApp() {
 
   const handleFetchResources = useCallback(async () => {
     setIsLoading(true);
-    const { channelsData, epgData } = await fetchClaroVideoChannels();
-    const epg = await fetchEpg();
-    const channels = await fetchChannels();
-    setEpg(epg as Program[]);
+    const { channelsData, EPGData } = await fetchClaroVideoChannels();
+    // const epg = await fetchEpg();
+    // const channels = await fetchChannels();
+    setEpg(EPGData as Program[]);
     setChannels(channelsData as Channel[]);
     setIsLoading(false);
   }, []);
