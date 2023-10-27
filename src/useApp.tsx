@@ -1,4 +1,4 @@
-import { fetchChannels, fetchClaroVideoChannels, fetchEpg } from './helpers';
+import { fetchClaroVideoChannels, getCurrentDateFormatted } from './helpers';
 import { Channel, Program, useEpg } from "planby";
 import { theme } from "./helpers/theme";
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -20,8 +20,8 @@ export function useApp() {
     isSidebar: true,
     isTimeline: true,
     isLine: true,
-    startDate: "2023-10-27T00:00:00",
-    endDate: "2023-10-27T24:00:00",
+    startDate: getCurrentDateFormatted(),
+    endDate: getCurrentDateFormatted(true),
     isBaseTimeFormat: true,
     theme,
   });
@@ -29,8 +29,6 @@ export function useApp() {
   const handleFetchResources = useCallback(async () => {
     setIsLoading(true);
     const { channelsData, EPGData } = await fetchClaroVideoChannels();
-    // const epg = await fetchEpg();
-    // const channels = await fetchChannels();
     setEpg(EPGData as Program[]);
     setChannels(channelsData as Channel[]);
     setIsLoading(false);

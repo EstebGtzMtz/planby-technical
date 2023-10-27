@@ -6,19 +6,18 @@ import {
   ProgramStack,
   ProgramTitle,
   ProgramText,
-  ProgramImage,
   useProgram,
 } from "planby";
 
 export const Program = ({ program, ...rest }: ProgramItem) => {
-  const { styles, formatTime, set12HoursTimeFormat, isLive, isMinWidth } =
+  const { styles, formatTime, set12HoursTimeFormat, isLive } =
     useProgram({
       program,
       ...rest,
     });
 
   const { data } = program;
-  const { image, title, since, till } = data;
+  const { title, since, till } = data;
 
   const sinceTime = formatTime(since, set12HoursTimeFormat()).toLowerCase();
   const tillTime = formatTime(till, set12HoursTimeFormat()).toLowerCase();
@@ -27,7 +26,6 @@ export const Program = ({ program, ...rest }: ProgramItem) => {
     <ProgramBox width={styles.width} style={styles.position}>
       <ProgramContent width={styles.width} isLive={isLive}>
         <ProgramFlex>
-          {isLive && isMinWidth && <ProgramImage src={image} alt="Preview" />}
           <ProgramStack>
             <ProgramTitle>{title}</ProgramTitle>
             <ProgramText>

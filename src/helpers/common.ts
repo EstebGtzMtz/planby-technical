@@ -1,17 +1,15 @@
 import { parse, add, format } from 'date-fns';
-import { channels } from './channels';
-import { epg } from "./epg";
 
-const baseURL = 'https://mfwkweb-api.clarovideo.net/services/epg/channel?device_id=web&device_category=web&device_model=web&device_type=web&device_so=Chrome&format=json&device_manufacturer=generic&authpn=webclient&authpt=tfg1h3j4k6fd7&api_version=v5.93&region=mexico&HKS=web61144bb49d549&user_id=54343080&date_from=20231027000000&date_to=20231027235959&quantity=5'
+const baseURL = 'https://mfwkweb-api.clarovideo.net/services/epg/channel?device_id=web&device_category=web&device_model=web&device_type=web&device_so=Chrome&format=json&device_manufacturer=generic&authpn=webclient&authpt=tfg1h3j4k6fd7&api_version=v5.93&region=mexico&HKS=web61144bb49d549&user_id=54343080&date_from=20231027000000&date_to=20231027235959&quantity=20'
 
   export const fetchClaroVideoChannels = async () => {
-  const res = await fetch(baseURL);
-  const {response: {channels}} = await res.json();
+    const res = await fetch(baseURL);
+    const {response: {channels}} = await res.json();
 
-  const channelsData = formatChannels(channels)
-  const unformattedEpgData = formatEpgData(channels)
+    const channelsData = formatChannels(channels);
+    const unformattedEpgData = formatEpgData(channels);
 
-  const EPGData = mergeChannelsInfo(unformattedEpgData)
+    const EPGData = mergeChannelsInfo(unformattedEpgData);
 
     return { channelsData, EPGData };
   }
@@ -38,7 +36,6 @@ const baseURL = 'https://mfwkweb-api.clarovideo.net/services/epg/channel?device_
           since: convertDateFormat(event.date_begin),
           till: convertDateFormat(event.date_end),
           channelUuid: event.channel_id,
-          image:"https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/sjx6zjQI2dLGtEL0HGWsnq6UyLU.jpg",
           country:'Ghana',
           Year:'2021–',
           Rated:"TV-14",
@@ -79,13 +76,15 @@ const baseURL = 'https://mfwkweb-api.clarovideo.net/services/epg/channel?device_
     return formattedDate;
   }
 
-  const mergeChannelsInfo = (channelsArray) => {
-    const arrayOfArrays = channelsArray.map(el => el.channels);
-    return [].concat(...arrayOfArrays)
+  export const getCurrentDateFormatted = (isEndDate = false) => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    return isEndDate ? `${year}-${month}-${day}T24:00:00`: `${year}-${month}-${day}T00:00:00`
   }
 
-export const fetchChannels = async () =>
-  new Promise((res) => setTimeout(() => res(channels), 400));
-
-export const fetchEpg = async () =>
-  new Promise((res) => setTimeout(() => res(epg), 500));
+  const mergeChannelsInfo = (channelsArray) => {
+    const arrayOfArrays = channelsArray.map(arr => arr.channels);
+    return [].concat(...arrayOfArrays)
+  }

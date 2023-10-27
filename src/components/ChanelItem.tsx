@@ -11,7 +11,7 @@ export const ChannelItem = ({ channel }: ChannelItemProps) => {
       <ChannelLogo
         src={logo}
         alt="Logo"
-        style={{ maxHeight: 52, maxWidth: 52 }}
+        style={{ maxHeight: 100, maxWidth: 100 }}
       />
     </ChannelBox>
   );
