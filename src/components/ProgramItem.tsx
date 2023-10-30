@@ -1,3 +1,4 @@
+import { useAppDispatch } from '../hooks/reduxHooks';
 import {
   ProgramItem,
   ProgramBox,
@@ -8,8 +9,12 @@ import {
   ProgramText,
   useProgram,
 } from "planby";
+import { setCurrentShow } from '../store/Channels';
 
 export const Program = ({ program, ...rest }: ProgramItem) => {
+
+  const dispatch = useAppDispatch();
+
   const { styles, formatTime, set12HoursTimeFormat, isLive } =
     useProgram({
       program,
@@ -22,8 +27,12 @@ export const Program = ({ program, ...rest }: ProgramItem) => {
   const sinceTime = formatTime(since, set12HoursTimeFormat()).toLowerCase();
   const tillTime = formatTime(till, set12HoursTimeFormat()).toLowerCase();
 
+  const handleSetCurrentChannel = () => {
+    dispatch(setCurrentShow(data))
+  }
+
   return (
-    <ProgramBox width={styles.width} style={styles.position} onMouseEnter={()=> console.log({data})}>
+    <ProgramBox width={styles.width} style={styles.position} onMouseEnter={handleSetCurrentChannel}>
       <ProgramContent width={styles.width} isLive={isLive}>
         <ProgramFlex>
           <ProgramStack>
