@@ -1,21 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-interface channelStateInterface {
-  id: number | null
-  description: string
-  title: string
-  since: string
-  till: string
-  channelUuid: number | null
+export interface channelStateInterface {
+  currentNote :{
+    id: number | null
+    description: string
+    title: string
+    since: string
+    till: string
+    channelUuid: number | null
+  }
 }
 
 const initialState: channelStateInterface = {
-  id: null,
-  description: '',
-  title: '',
-  since: '',
-  till: '',
-  channelUuid: null
+  currentNote : {
+    id: null,
+    description: '',
+    title: '',
+    since: '',
+    till: '',
+    channelUuid: null
+  }
 }
 
 export const channelsSlice = createSlice({
@@ -23,20 +27,20 @@ export const channelsSlice = createSlice({
   initialState,
   reducers: {
     setCurrentShow: (state, {payload}) => {
-      state.id = payload.id;
-      state.description = payload.description;
-      state.title = payload.title;
-      state.since = payload.since;
-      state.till = payload.till;
-      state.channelUuid = payload.channelUuid
+      state.currentNote.id = payload.id;
+      state.currentNote.description = payload.description;
+      state.currentNote.title = payload.title;
+      state.currentNote.since = payload.since;
+      state.currentNote.till = payload.till;
+      state.currentNote.channelUuid = payload.channelUuid
     },
     removeCurrentShow: (state) => {
-      state.id = null;
-      state.description = '';
-      state.title = '';
-      state.since = '';
-      state.till = '';
-      state.channelUuid = null;
+      state.currentNote.id = null;
+      state.currentNote.description = '';
+      state.currentNote.title = '';
+      state.currentNote.since = '';
+      state.currentNote.till = '';
+      state.currentNote.channelUuid = null;
     }
   },
 })

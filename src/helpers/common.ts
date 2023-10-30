@@ -10,7 +10,6 @@ export const getFormattedDateToBaseURL = (isEndHour = false) => {
 }
 
 export const formatChannels = (channels) => {
-  console.log('si entro')
   return channels?.map(channel => ({
     uuid: channel.id,
     type: 'channel',
