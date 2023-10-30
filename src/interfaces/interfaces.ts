@@ -15,3 +15,12 @@
     description: string
     duration?: string
   }
+
+  export interface FormattedEventInterface {
+    id: string;
+    description: string;
+    title: string;
+    since: string;
+    till: string;
+    channelUuid: string;
+  }
