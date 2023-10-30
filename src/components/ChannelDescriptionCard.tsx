@@ -21,14 +21,16 @@ export const ChannelDescriptionCard = () => {
         </Card.Title>
         {
           description &&
-          <>
-            <Card.Text className='description-container'>
-              {description}
-            </Card.Text>
-            <footer className="blockquote-footer">
-              {startHour} hours to {finishHour} hours
-            </footer>
-          </>
+            <blockquote className="blockquote mb-0">
+              <p>
+                {' '}
+                {description}
+                {' '}
+              </p>
+              <footer className="blockquote-footer">
+                {startHour} hours to {finishHour} hours
+              </footer>
+            </blockquote>
         }
       </Card.Body>
     </Card>
