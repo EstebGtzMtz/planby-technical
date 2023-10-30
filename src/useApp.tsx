@@ -3,7 +3,7 @@ import { getCurrentDateFormattedToCreateEPGConfigurationObject } from './helpers
 import { Channel, Program, useEpg } from "planby";
 import { theme } from "./helpers/theme";
 import { useCallback, useEffect, useState } from 'react';
-import { cleanEpgData, formatChannels, mergeChannelsInfo } from './helpers/common';
+import { formatChannels, formatEpgData } from './helpers/common';
 import { useGetChannelsQuery } from './store/apis';
 
 export function useApp() {
@@ -32,9 +32,7 @@ export function useApp() {
     setIsLoading(true);
     if (!isChannelsLoading) {
       setChannels(formatChannels(channelsData.response.channels) as Channel[]);
-
-      const unformattedEpgData = cleanEpgData(channelsData.response.channels);
-      setEpg(mergeChannelsInfo(unformattedEpgData) as Program[])
+      setEpg(formatEpgData(channelsData.response.channels) as Program[])
 
       setIsLoading(false);
     }
