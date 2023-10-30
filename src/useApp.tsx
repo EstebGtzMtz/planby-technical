@@ -1,4 +1,4 @@
-import { fetchClaroVideoChannels, getCurrentDateFormatted } from './helpers';
+import { fetchClaroVideoChannels, getCurrentDateFormattedToCreateEPGConfigurationObject } from './helpers';
 import { Channel, Program, useEpg } from "planby";
 import { theme } from "./helpers/theme";
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -20,8 +20,8 @@ export function useApp() {
     isSidebar: true,
     isTimeline: true,
     isLine: true,
-    startDate: getCurrentDateFormatted(),
-    endDate: getCurrentDateFormatted(true),
+    startDate: getCurrentDateFormattedToCreateEPGConfigurationObject(),
+    endDate: getCurrentDateFormattedToCreateEPGConfigurationObject(true),
     isBaseTimeFormat: true,
     theme,
   });
