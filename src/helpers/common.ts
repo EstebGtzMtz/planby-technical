@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { parse, add, format } from 'date-fns';
+import { FormattedEventInterface, RawChannelInterface, RawShowsInterface } from '../interfaces/interfaces';
 
 const today = new Date();
 const year = today.getFullYear().toString();
@@ -10,26 +10,21 @@ export const getFormattedDateToBaseURL = (isEndHour = false) => isEndHour ? `${y
 
 export const getCurrentDateFormattedToCreateEPGConfigurationObject = (isEndDate = false) => isEndDate ? `${year}-${month}-${day}T24:00:00`: `${year}-${month}-${day}T00:00:00`
 
-export const formatChannels = (channels: any) => {
-  return channels?.map((channel:any) => ({
+export const formatChannels = (channels: RawChannelInterface[]) => {
+  return channels?.map((channel:RawChannelInterface) => ({
     uuid: channel.id,
     type: 'channel',
     title: channel.name,
-    country: 'Mexico',
     provider: channel.number,
     logo: channel.image,
-    year: 2002
   }));
 };
 
-export const mergeChannelsInfo = (channelsArray:any) => {
-  const arrayOfArrays = channelsArray.map((arr:any) => arr.channels);
-  return [].concat(...arrayOfArrays)
-};
 
-export const formatEpgData = (channels:any) => {
-  const cleanedData = channels.map((channel:any) => ({
-    channels: channel.events.map((event:any) => ({
+export const formatEpgData = (channels: RawChannelInterface[]) => {
+  return channels.reduce((acc, channel) => {
+    return acc.concat(
+      channel.events.map((event: RawShowsInterface) => ({
         id: event.id,
         description: event.description,
         title: event.name,
@@ -37,9 +32,9 @@ export const formatEpgData = (channels:any) => {
         till: convertDateFormatToFormatApiResponse(event.date_end),
         channelUuid: event.channel_id,
       }))
-  }));
+    );
+  }, [] as FormattedEventInterface[]); // Asegura que el acumulador sea un arreglo vacío al inicio
 
-  return mergeChannelsInfo(cleanedData)
 };
 
 export const convertDateFormatToFormatApiResponse = (inputDate: string) => {

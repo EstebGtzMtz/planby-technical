@@ -31,9 +31,8 @@ export function useApp() {
   const handleFetchResources = useCallback(async () => {
     setIsLoading(true);
     if (!isChannelsLoading) {
-      setChannels(formatChannels(channelsData.response.channels) as Channel[]);
-      setEpg(formatEpgData(channelsData.response.channels) as Program[])
-
+      setChannels(formatChannels(channelsData.response.channels) as unknown as Channel[]);
+      setEpg(formatEpgData(channelsData.response.channels) as Program[]);
       setIsLoading(false);
     }
   }, [isChannelsLoading]);
