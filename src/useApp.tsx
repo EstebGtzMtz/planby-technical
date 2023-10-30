@@ -3,8 +3,8 @@ import { getCurrentDateFormattedToCreateEPGConfigurationObject } from './helpers
 import { Channel, Program, useEpg } from "planby";
 import { theme } from "./helpers/theme";
 import { useCallback, useEffect, useState } from 'react';
-import { useGetChannelsQuery } from './store/apis/getChannelsAPI';
 import { cleanEpgData, formatChannels, mergeChannelsInfo } from './helpers/common';
+import { useGetChannelsQuery } from './store/apis';
 
 export function useApp() {
   const [channels, setChannels] = useState<Channel[]>([]);

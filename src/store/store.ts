@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { channelsApi } from "./apis/getChannelsAPI";
 import { channelsSlice } from './Channels/ChannelsSlice';
+import { channelsApi } from './apis/getChannelsApi';
 
 export const store = configureStore({
   reducer: {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Epg, Layout } from "planby";
 import { useApp } from "../useApp";
 import { Timeline } from "./Timeline";
@@ -12,11 +13,11 @@ export const EPG = () => {
       <Epg isLoading={isLoading} {...getEpgProps()}>
         <Layout
           {...getLayoutProps()}
-          renderTimeline={(props) => <Timeline {...props} />}
-          renderProgram={({ program, ...rest }) => (
+          renderTimeline={(props: any) => <Timeline {...props} />}
+          renderProgram={({ program, ...rest }: any) => (
             <Program key={program.data.id} program={program} {...rest} />
           )}
-          renderChannel={({ channel }) => (
+          renderChannel={({ channel }: any) => (
             <ChannelItem key={channel.uuid} channel={channel} />
           )}
         />

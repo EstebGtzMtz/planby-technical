@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { parse, add, format } from 'date-fns';
 
 export const getFormattedDateToBaseURL = (isEndHour = false) => {
@@ -9,8 +10,8 @@ export const getFormattedDateToBaseURL = (isEndHour = false) => {
   return isEndHour ? year + month + day + '235959' : year + month + day + '000000';
 }
 
-export const formatChannels = (channels) => {
-  return channels?.map(channel => ({
+export const formatChannels = (channels: any) => {
+  return channels?.map((channel:any) => ({
     uuid: channel.id,
     type: 'channel',
     title: channel.name,
@@ -21,9 +22,9 @@ export const formatChannels = (channels) => {
   }));
 };
 
-export const cleanEpgData = (channels) => {
-  return channels.map(channel => ({
-    channels: channel.events.map(event => ({
+export const cleanEpgData = (channels:any) => {
+  return channels.map((channel:any) => ({
+    channels: channel.events.map((event:any) => ({
         id: event.id,
         description: event.description,
         title: event.name,
@@ -54,7 +55,7 @@ export const getCurrentDateFormattedToCreateEPGConfigurationObject = (isEndDate 
 
 
 
-export const mergeChannelsInfo = (channelsArray) => {
-  const arrayOfArrays = channelsArray.map(arr => arr.channels);
+export const mergeChannelsInfo = (channelsArray:any) => {
+  const arrayOfArrays = channelsArray.map((arr:any) => arr.channels);
   return [].concat(...arrayOfArrays)
 }
