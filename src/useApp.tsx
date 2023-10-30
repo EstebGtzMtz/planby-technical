@@ -1,19 +1,21 @@
-import { fetchClaroVideoChannels, getCurrentDateFormattedToCreateEPGConfigurationObject } from './helpers';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { getCurrentDateFormattedToCreateEPGConfigurationObject } from './helpers';
 import { Channel, Program, useEpg } from "planby";
 import { theme } from "./helpers/theme";
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useGetChannelsQuery } from './store/apis/getChannelsAPI';
+import { cleanEpgData, formatChannels, mergeChannelsInfo } from './helpers/common';
 
 export function useApp() {
   const [channels, setChannels] = useState<Channel[]>([]);
   const [epg, setEpg] = useState<Program[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const channelsData = useMemo(() => channels, [channels]);
-  const epgData = useMemo(() => epg, [epg]);
+  const { data: channelsData, isLoading: isChannelsLoading } = useGetChannelsQuery({},{refetchOnMountOrArgChange: false});
 
   const { getEpgProps, getLayoutProps } = useEpg({
-    channels: channelsData,
-    epg: epgData,
+    channels: channels,
+    epg: epg,
     dayWidth: 7200,
     sidebarWidth: 100,
     itemHeight: 80,
@@ -28,11 +30,15 @@ export function useApp() {
 
   const handleFetchResources = useCallback(async () => {
     setIsLoading(true);
-    const { channelsData, EPGData } = await fetchClaroVideoChannels();
-    setEpg(EPGData as Program[]);
-    setChannels(channelsData as Channel[]);
-    setIsLoading(false);
-  }, []);
+    if (!isChannelsLoading) {
+      setChannels(formatChannels(channelsData.response.channels) as Channel[]);
+
+      const unformattedEpgData = cleanEpgData(channelsData.response.channels);
+      setEpg(mergeChannelsInfo(unformattedEpgData) as Program[])
+
+      setIsLoading(false);
+    }
+  }, [isChannelsLoading]);
 
   useEffect(() => {
     handleFetchResources();
