@@ -23,7 +23,7 @@ export const Program = ({ program, ...rest }: ProgramItem) => {
   const tillTime = formatTime(till, set12HoursTimeFormat()).toLowerCase();
 
   return (
-    <ProgramBox width={styles.width} style={styles.position}>
+    <ProgramBox width={styles.width} style={styles.position} onMouseEnter={()=> console.log({data})}>
       <ProgramContent width={styles.width} isLive={isLive}>
         <ProgramFlex>
           <ProgramStack>
