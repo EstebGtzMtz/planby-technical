@@ -1,26 +1,32 @@
-import { Epg, Layout } from "planby";
-import { ChannelItem } from "./components/ChanelItem";
-import { Program } from "./components/ProgramItem";
-import { Timeline } from "./components/Timeline";
-import { useApp } from "./useApp";
+import {Button, Modal} from 'react-bootstrap';
+import { useState } from 'react';
+import { EPG } from './components';
 
 export const App = () => {
-  const { isLoading, getEpgProps, getLayoutProps } = useApp();
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   return (
-    <div style={{ height: "80vh", width: "99vw" }}>
-      <Epg isLoading={isLoading} {...getEpgProps()}>
-        <Layout
-          {...getLayoutProps()}
-          renderTimeline={(props) => <Timeline {...props} />}
-          renderProgram={({ program, ...rest }) => (
-            <Program key={program.data.id} program={program} {...rest} />
-          )}
-          renderChannel={({ channel }) => (
-            <ChannelItem key={channel.uuid} channel={channel} />
-          )}
-        />
-      </Epg>
-    </div>
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Open EPG
+      </Button>
+
+      <Modal show={show} onHide={handleClose} fullscreen>
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body>
+          <EPG />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      </>
   );
 }
