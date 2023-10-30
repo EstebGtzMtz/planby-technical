@@ -46,32 +46,6 @@ const cleanEpgData = (channels) => {
         since: convertDateFormatToCleanApiResponse(event.date_begin),
         till: convertDateFormatToCleanApiResponse(event.date_end),
         channelUuid: event.channel_id,
-        country:'Ghana',
-        Year:'2021–',
-        Rated:"TV-14",
-        Released:"29 Dec 2021",
-        Runtime:"N/A",
-        Genre:"Action, Adventure, Sci-Fi",
-        Director:"N/A",
-        Writer:"Jon Favreau",
-        Actors:"Temuera Morrison, Ming-Na Wen, Matt Berry",
-        Language:"English",
-        Country:"United States",
-        Awards:"N/A",
-        Metascore:"N/A",
-        imdbRating:"8.0",
-        imdbVotes:"20,147",
-        imdbID:"tt13668894",
-        Type:"series",
-        totalSeasons:"1",
-        Response:"True",
-        Ratings:[
-          {
-            Source:"Internet Movie Database",
-            Value:"8.0/10"
-          }
-        ],
-        rating:3
       }))
   }));
 }

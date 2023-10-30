@@ -4,7 +4,7 @@ import { Program } from "./components/ProgramItem";
 import { Timeline } from "./components/Timeline";
 import { useApp } from "./useApp";
 
-function App() {
+export const App = () => {
   const { isLoading, getEpgProps, getLayoutProps } = useApp();
 
   return (
@@ -24,5 +24,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
