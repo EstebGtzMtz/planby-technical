@@ -1,8 +1,5 @@
-import { Channel, ChannelBox, ChannelLogo } from "planby";
-
-interface ChannelItemProps {
-  channel: Channel;
-}
+import { ChannelBox, ChannelLogo } from "planby";
+import { ChannelItemProps } from "../interfaces";
 
 export const ChannelItem = ({ channel }: ChannelItemProps) => {
   const { position, logo } = channel;

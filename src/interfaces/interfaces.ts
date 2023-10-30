@@ -1,3 +1,5 @@
+import { Channel } from "planby"
+
   export interface RawChannelInterface {
     id: string
     image: string
@@ -23,4 +25,8 @@
     since: string;
     till: string;
     channelUuid: string;
+  }
+
+  export interface ChannelItemProps {
+    channel: Channel;
   }
