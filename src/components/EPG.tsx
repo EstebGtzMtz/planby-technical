@@ -8,7 +8,7 @@ export const EPG = () => {
   const { isLoading, getEpgProps, getLayoutProps } = useApp();
 
   return (
-    <div style={{ height: "80vh", width: "100%" }}>
+    <div style={{ height: "70vh", width: "100%" }}>
       <Epg isLoading={isLoading} {...getEpgProps()}>
         <Layout
           {...getLayoutProps()}

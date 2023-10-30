@@ -4,7 +4,6 @@ interface channelStateInterface {
   id: number | null
   description: string
   title: string
-  isYesterday: true
   since: string
   till: string
   channelUuid: number | null
@@ -15,7 +14,6 @@ const initialState: channelStateInterface = {
   description: '',
   title: '',
   since: '',
-  isYesterday: true,
   till: '',
   channelUuid: null
 }
@@ -32,7 +30,15 @@ export const channelsSlice = createSlice({
       state.till = payload.till;
       state.channelUuid = payload.channelUuid
     },
+    removeCurrentShow: (state) => {
+      state.id = null;
+      state.description = '';
+      state.title = '';
+      state.since = '';
+      state.till = '';
+      state.channelUuid = null;
+    }
   },
 })
 
-export const { setCurrentShow } = channelsSlice.actions;
+export const { setCurrentShow, removeCurrentShow } = channelsSlice.actions;

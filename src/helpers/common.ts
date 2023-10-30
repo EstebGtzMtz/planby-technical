@@ -28,7 +28,6 @@ export const cleanEpgData = (channels) => {
         id: event.id,
         description: event.description,
         title: event.name,
-        isYesterday:true,
         since: convertDateFormatToCleanApiResponse(event.date_begin),
         till: convertDateFormatToCleanApiResponse(event.date_end),
         channelUuid: event.channel_id,

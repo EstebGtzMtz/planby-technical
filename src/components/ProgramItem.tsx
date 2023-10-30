@@ -9,7 +9,7 @@ import {
   ProgramText,
   useProgram,
 } from "planby";
-import { setCurrentShow } from '../store/Channels';
+import { removeCurrentShow, setCurrentShow } from '../store/Channels';
 
 export const Program = ({ program, ...rest }: ProgramItem) => {
 
@@ -27,12 +27,15 @@ export const Program = ({ program, ...rest }: ProgramItem) => {
   const sinceTime = formatTime(since, set12HoursTimeFormat()).toLowerCase();
   const tillTime = formatTime(till, set12HoursTimeFormat()).toLowerCase();
 
-  const handleSetCurrentChannel = () => {
-    dispatch(setCurrentShow(data))
-  }
+  const handleSetCurrentChannel = () => dispatch(setCurrentShow(data));
+
+  const handleRemoveCurrentChannel = () => dispatch(removeCurrentShow());
 
   return (
-    <ProgramBox width={styles.width} style={styles.position} onMouseEnter={handleSetCurrentChannel}>
+    <ProgramBox
+      width={styles.width} style={styles.position}
+      onMouseEnter={handleSetCurrentChannel} onMouseLeave={handleRemoveCurrentChannel}
+    >
       <ProgramContent width={styles.width} isLive={isLive}>
         <ProgramFlex>
           <ProgramStack>
