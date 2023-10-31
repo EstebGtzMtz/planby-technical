@@ -23,11 +23,6 @@ export const App = () => {
           <ChannelDescriptionCard />
           <EPG />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
       </>
   );

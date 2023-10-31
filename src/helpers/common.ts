@@ -31,6 +31,7 @@ export const formatEpgData = (channels: RawChannelInterface[]) => {
         since: convertDateFormatToFormatApiResponse(event.date_begin),
         till: convertDateFormatToFormatApiResponse(event.date_end),
         channelUuid: event.channel_id,
+        duration: event.duration
       }))
     );
   }, [] as FormattedEventInterface[]); // Asegura que el acumulador sea un arreglo vacío al inicio

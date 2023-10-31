@@ -2,7 +2,15 @@
   min-height: 12rem;
 }
 
-.description-container{
-  background-color: aquamarine;
-  min-height: 6rem;
+.description-body{
+  min-height: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.description-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
