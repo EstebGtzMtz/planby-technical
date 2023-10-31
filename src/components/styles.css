@@ -1,9 +1,5 @@
-.card-container {
-  min-height: 12rem;
-}
-
 .description-body{
-  min-height: 12rem;
+  min-height: 11rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
