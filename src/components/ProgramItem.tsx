@@ -10,24 +10,26 @@ import {
   useProgram,
 } from "planby";
 import { removeCurrentShow, setCurrentShow } from '../store/Channels';
+import { useMemo } from 'react';
 
 export const Program = ({ program, ...rest }: ProgramItem) => {
 
   const dispatch = useAppDispatch();
 
   const { styles, formatTime, set12HoursTimeFormat, isLive } =
-    useProgram({
-      program,
-      ...rest,
-    });
+  useProgram({
+    program,
+    ...rest,
+  });
 
-  const { data } = program;
-  const { title, since, till } = data;
+  const { data: {title, since, till, ...restProgramData}  } = program;
 
-  const sinceTime = formatTime(since, set12HoursTimeFormat()).toLowerCase();
-  const tillTime = formatTime(till, set12HoursTimeFormat()).toLowerCase();
+  const sinceTime = useMemo(()=>formatTime(since, set12HoursTimeFormat()).toLowerCase(), [formatTime, set12HoursTimeFormat, since]);
+  const tillTime = useMemo(()=> formatTime(till, set12HoursTimeFormat()).toLowerCase(),[formatTime, set12HoursTimeFormat, till]);
 
-  const handleSetCurrentChannel = () => dispatch(setCurrentShow(data));
+  console.log(sinceTime, tillTime)
+
+  const handleSetCurrentChannel = () => dispatch(setCurrentShow({title, since: sinceTime, till: tillTime, ...restProgramData}));
 
   const handleRemoveCurrentChannel = () => dispatch(removeCurrentShow());
 

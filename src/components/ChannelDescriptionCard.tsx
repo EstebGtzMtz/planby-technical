@@ -7,8 +7,6 @@ export const ChannelDescriptionCard = () => {
 
   const { currentNote: { title, description, since, till, duration} } = useAppSelector(state => state.channel);
 
-  const startHour = useMemo(() => since.slice(-8), [since]);
-  const finishHour = useMemo(()=> till.slice(-8), [till]);
 
   const shortName = useMemo(()=> description.length > 400 ? `${description.substring(0,400)}...` : description, [description])
 
@@ -20,7 +18,7 @@ export const ChannelDescriptionCard = () => {
           { shortName }
         </Card.Text>
         <div>
-          { since && <footer className="blockquote-footer"> Horario: {startHour} horas a {finishHour} horas </footer> }
+          { since && <footer className="blockquote-footer"> Horario: {since}  a {till} </footer> }
           { duration && <footer className="blockquote-footer"> Duracion: {duration} </footer> }
         </div>
       </Card.Body>

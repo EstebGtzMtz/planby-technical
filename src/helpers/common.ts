@@ -15,7 +15,7 @@ export const formatChannels = (channels: RawChannelInterface[]) => {
     uuid: channel.id,
     type: 'channel',
     title: channel.name,
-    provider: channel.number,
+    number: channel.number,
     logo: channel.image,
   }));
 };

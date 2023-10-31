@@ -4,7 +4,7 @@ import { Channel } from "planby"
     id: string
     image: string
     name: string
-    number?: string
+    number: string
     events: RawShowsInterface[]
   }
 
@@ -15,7 +15,7 @@ import { Channel } from "planby"
     date_begin: string
     date_end: string
     description: string
-    duration?: string
+    duration: string
   }
 
   export interface FormattedEventInterface {
