@@ -16,7 +16,9 @@ export const ChannelDescriptionCard = () => {
       style={{backgroundColor:'#171923'}}
       text='white'
     >
-      <Card.Header> { title } </Card.Header>
+      <Card.Header>
+        <h3>{ title }</h3>
+      </Card.Header>
       <Card.Body className='description-body'>
         {
           channelImage &&

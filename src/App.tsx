@@ -17,9 +17,9 @@ export const App = () => {
       </Button>
 
       <Modal show={show} onHide={handleClose} fullscreen>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton >
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{backgroundColor: '#1a202c'}}>
           <ChannelDescriptionCard />
           <EPG />
         </Modal.Body>
