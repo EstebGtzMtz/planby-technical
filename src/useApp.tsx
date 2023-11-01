@@ -17,15 +17,15 @@ export function useApp() {
     channels: channels,
     epg: epg,
     dayWidth: 7200,
-    sidebarWidth: 100,
-    itemHeight: 80,
+    sidebarWidth: 150,
+    itemHeight: 120,
     isSidebar: true,
     isTimeline: true,
     isLine: true,
+    isBaseTimeFormat: true,
     startDate: getCurrentDateFormattedToCreateEPGConfigurationObject(),
     endDate: getCurrentDateFormattedToCreateEPGConfigurationObject(true),
-    isBaseTimeFormat: true,
-    theme,
+    theme
   });
 
   const handleFetchResources = useCallback(async () => {

@@ -7,8 +7,9 @@ export interface channelStateInterface {
     title: string
     since: string
     till: string
-    channelUuid: number | null,
-    duration: string
+    channelUuid: string,
+    duration: string,
+    channelImage?: string
   }
 }
 
@@ -19,8 +20,8 @@ const initialState: channelStateInterface = {
     title: 'Bienvenido a nuestra Guía electrónica de programas ',
     since: '',
     till: '',
-    channelUuid: null,
-    duration: ''
+    channelUuid: '',
+    duration: '',
   }
 }
 
@@ -37,16 +38,20 @@ export const channelsSlice = createSlice({
       state.currentNote.channelUuid = payload.channelUuid;
       state.currentNote.duration = payload.duration
     },
+    setCurrentChannelImage: (state, {payload}) => {
+      state.currentNote.channelImage = payload
+    },
     removeCurrentShow: (state) => {
       state.currentNote.id = null;
       state.currentNote.description = 'Pasa el mouse por el canal que quieras obtener informacion';
       state.currentNote.title = 'Bienvenido a nuestra Guía electrónica de programas';
       state.currentNote.since = '';
       state.currentNote.till = '';
-      state.currentNote.channelUuid = null;
+      state.currentNote.channelUuid = '';
       state.currentNote.duration = '';
+      state.currentNote.channelImage = '';
     }
   },
 })
 
-export const { setCurrentShow, removeCurrentShow } = channelsSlice.actions;
+export const { setCurrentShow, removeCurrentShow, setCurrentChannelImage } = channelsSlice.actions;

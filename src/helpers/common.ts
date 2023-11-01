@@ -34,7 +34,7 @@ export const formatEpgData = (channels: RawChannelInterface[]) => {
         duration: event.duration
       }))
     );
-  }, [] as FormattedEventInterface[]); // Asegura que el acumulador sea un arreglo vacío al inicio
+  }, [] as FormattedEventInterface[]);
 
 };
 

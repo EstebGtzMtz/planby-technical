@@ -11,7 +11,9 @@ export const ChannelItem = ({ channel }: ChannelItemProps) => {
         alt="Logo"
         style={{ maxHeight: 100, maxWidth: 100 }}
       />
-      <h3 style={{color: 'white'}}>{number}</h3>
+      <h5 style={{color: 'white', fontSize: '1rem'}}>
+        {number}
+      </h5>
     </ChannelBox>
   );
 };

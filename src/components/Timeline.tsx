@@ -28,7 +28,7 @@ export function Timeline({
 }: TimelineProps) {
   const { time, dividers, formatTime } = useTimeline(
     numberOfHoursInDay,
-    isBaseTimeFormat
+    isBaseTimeFormat,
   );
 
   const renderTime = (index: number) => (
