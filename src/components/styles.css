@@ -1,10 +1,20 @@
+.card-container{
+  background-color:#1a202c;
+  min-height: 25rem;
+}
+
+.card-title{
+  background-color: #171923;
+}
+
 .description-body{
-  min-height: 11rem;
   display: flex;
   flex-direction: column;
+  background-color: #171923;
 }
 
 .description-text{
+  min-height: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

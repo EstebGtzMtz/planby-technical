@@ -13,10 +13,10 @@ export const ChannelDescriptionCard = () => {
 
   return (
     <Card
-      style={{backgroundColor:'#171923'}}
+      className='card-container'
       text='white'
     >
-      <Card.Header>
+      <Card.Header className='card-title'>
         <h3>{ title }</h3>
       </Card.Header>
       <Card.Body className='description-body'>
@@ -28,7 +28,7 @@ export const ChannelDescriptionCard = () => {
             style={{ maxHeight: 100, maxWidth: 150 }}
           />
         }
-        <Card.Text>
+        <Card.Text className='description-text'>
           { shortName }
         </Card.Text>
         <div>
