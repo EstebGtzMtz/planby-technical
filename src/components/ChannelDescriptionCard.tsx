@@ -12,7 +12,10 @@ export const ChannelDescriptionCard = () => {
   const shortName = useMemo(()=> description.length > 400 ? `${description.substring(0,400)}...` : description, [description])
 
   return (
-    <Card>
+    <Card
+      style={{backgroundColor:'#171923'}}
+      text='white'
+    >
       <Card.Header> { title } </Card.Header>
       <Card.Body className='description-body'>
         {
@@ -20,7 +23,7 @@ export const ChannelDescriptionCard = () => {
           <ChannelLogo
             src={channelImage}
             alt="Logo"
-            style={{ maxHeight: 100, maxWidth: 100 }}
+            style={{ maxHeight: 100, maxWidth: 150 }}
           />
         }
         <Card.Text>
